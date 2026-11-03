@@ -1,0 +1,10 @@
+{
+  "name": "construction-pm-kit",
+  "version": "0.1.0",
+  "description": "Bộ kit quản lý dự án xây dựng dùng cho mọi công ty, mọi dự án: đọc template / quy trình / hồ sơ đầu vào để nhận diện công ty, dự án, khách hàng trước khi làm việc; mirror BOQ / spec / bản vẽ; lập văn bản từ template đúng quy trình. Không chứa dữ liệu của công ty nào.",
+  "author": {
+    "name": "Nguyễn Thanh Ngọc"
+  },
+  "license": "MIT",
+  "keywords": ["construction", "project-management", "document-control", "boq", "specification", "drawings", "templates", "onboarding"]
+}

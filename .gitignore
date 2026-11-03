@@ -1,0 +1,9 @@
+# Dữ liệu công ty / dự án — KHÔNG đưa lên repo công khai
+_PROFILE/
+00_AI-CONTEXT/
+_COMPANY/
+90_CLAUDE-OUTPUT/
+_bak/
+# Python
+__pycache__/
+*.pyc

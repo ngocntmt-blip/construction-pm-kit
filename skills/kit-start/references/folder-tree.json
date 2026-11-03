@@ -1,0 +1,52 @@
+{
+  "_note": "Cây folder mặc định. Công ty có cây chuẩn riêng thì sửa file này (hoặc trỏ conventions.folder_tree trong profile.json tới bản của công ty). 'upload' = người dùng bỏ tài liệu vào; 'claude' = Claude ghi, người dùng không upload; 'work' = folder làm việc hằng ngày.",
+  "company": {
+    "_COMPANY": {
+      "role": "work",
+      "note": "Khu dữ liệu chung của CÔNG TY — dùng cho mọi dự án. Mỗi công ty một workspace riêng, không trộn.",
+      "children": {
+        "01_TEMPLATES": {"role": "upload", "note": "Form mẫu TRẮNG của công ty (.docx/.xlsx/.pptx): transmittal, RFI, công văn, biên bản, MOS/BPTC, JSA, ITP, phiếu đề nghị vật tư, báo cáo ngày/tuần, kế hoạch tuần… Đặt tên file nói rõ loại form. File .doc/.xls cũ: mở Office rồi Save As .docx/.xlsx trước khi upload."},
+        "02_PROCEDURES": {"role": "upload", "note": "Quy trình / quy định nội bộ: kiểm soát tài liệu (đặt tên, đánh số, revision, phê duyệt), ISO, HSE, mua hàng, thanh toán. PDF có lớp chữ hoặc Word."},
+        "03_ISSUED-SAMPLES": {"role": "upload", "note": "3–5 văn bản ĐÃ PHÁT HÀNH cho mỗi loại form (bản đã điền, đã ký), và các sổ theo dõi (register/log) đang dùng. Claude học cách đánh số, cách điền, văn phong từ đây."},
+        "04_BRANDING": {"role": "upload", "note": "Logo (PNG nền trong), letterhead, con dấu / chữ ký scan nếu công ty cho phép dùng trong văn bản."},
+        "05_COMPANY-INFO": {"role": "upload", "note": "Hồ sơ năng lực, giấy ĐKKD (tên pháp lý, MST, địa chỉ), danh sách nhân sự chủ chốt + chức danh + ai ký loại văn bản nào, chữ ký email mẫu."},
+        "_PROFILE": {"role": "claude", "note": "Hồ sơ nhận diện CÔNG TY do Claude dựng (company.md, templates.md, procedures.md, profile.json). KHÔNG upload tài liệu vào đây. Sửa tay được — Claude đọc bản trên đĩa."}
+      }
+    }
+  },
+  "project": {
+    "00_AI-CONTEXT": {"role": "claude", "note": "Hồ sơ nhận diện DỰ ÁN + mirror BOQ/spec/bản vẽ do Claude dựng. KHÔNG upload tài liệu vào đây."},
+    "00_PROJECT-INPUT": {
+      "role": "upload",
+      "note": "Tài liệu để Claude nhận diện dự án, khách hàng và các bên.",
+      "children": {
+        "01_CLIENT-PROCEDURES": {"role": "upload", "note": "Quy trình của CHỦ ĐẦU TƯ / TƯ VẤN áp cho dự án: Document Handling Procedure (cách đặt mã, transmittal, mã Issue for, thời hạn phản hồi), Communication Matrix, HSE Plan, Quality Plan, Project Execution Plan."},
+        "02_CLIENT-TEMPLATES": {"role": "upload", "note": "Form BẮT BUỘC của khách hàng (cover sheet, transmittal, RFI, material approval, NCR…). Form khách hàng thắng form công ty."},
+        "03_CONTACTS": {"role": "upload", "note": "Danh sách đầu mối các bên (tên, chức danh, email, ai TO ai CC), sơ đồ tổ chức dự án. Có thể là Excel, Word, hoặc ảnh chụp email chữ ký."},
+        "04_KICKOFF": {"role": "upload", "note": "Biên bản kick-off, email/công văn đầu dự án, thư giao thầu — giúp Claude biết vai trò của công ty trong dự án và các mốc đầu."}
+      }
+    },
+    "01_CONTRACT-BOQ": {"role": "upload", "note": "Hợp đồng / LOI / PO, phụ lục, BOQ bản CHÍNH THỨC, bảo lãnh, bảo hiểm. Bản cũ để vào SUPERSEDED.", "children": {"SUPERSEDED": {"role": "upload", "note": "Bản cũ — giữ để đối chiếu, KHÔNG reference."}}},
+    "02_DRAWINGS": {"role": "upload", "note": "Bản vẽ PDF (ưu tiên PDF xuất từ CAD, có lớp chữ).", "children": {
+      "AFC": {"role": "upload", "note": "Chỉ revision đang dùng. Bản cũ chuyển SUPERSEDED."},
+      "SHOP-DRAWING": {"role": "work", "note": "Shop drawing của mình."},
+      "AS-BUILT": {"role": "work", "note": "Bản vẽ hoàn công."},
+      "SUPERSEDED": {"role": "upload", "note": "Revision cũ — KHÔNG reference."}}},
+    "03_SPECIFICATION": {"role": "upload", "note": "Specification, Design Description / Basis of Design, Technical Datasheet, Vendor List. Nhiều bộ môn thì chia folder con theo bộ môn."},
+    "04_EXECUTION": {"role": "work", "note": "Kế hoạch thực hiện.", "children": {"PEP": {"role": "work", "note": "Project Execution Plan."}, "MOS": {"role": "work", "note": "Biện pháp thi công (MOS/BPTC)."}, "WEEKLY-PLAN": {"role": "work", "note": "Kế hoạch tuần."}}},
+    "05_QAQC": {"role": "work", "note": "ITP, NCR, biên bản thử nghiệm, chứng chỉ, punch list."},
+    "06_HSE": {"role": "work", "note": "HSE plan, JSA/PTW, đào tạo an toàn, sự cố, risk register."},
+    "07_MATERIAL": {"role": "work", "note": "Trình duyệt vật tư, đề nghị mua, catalogue, vendor list, sổ theo dõi phê duyệt."},
+    "08_SCHEDULE-REPORT": {"role": "work", "note": "Tiến độ, báo cáo ngày/tuần/tháng, biên bản họp."},
+    "09_RFI-SI-VO": {"role": "work", "note": "RFI, chỉ thị công trường (SI), phát sinh (VO)."},
+    "10_TRANSMITTAL": {"role": "work", "note": "Hồ sơ gởi đi / nhận về. Mỗi lần gởi một folder con, tên = số transmittal + tiêu đề ngắn.", "children": {"OUT": {"role": "work", "note": "Gởi đi."}, "IN": {"role": "work", "note": "Nhận về (kèm comment của tư vấn/CĐT)."}}},
+    "11_SITE-PHOTO": {"role": "work", "note": "Ảnh công trường — mỗi ngày một folder YYYY-MM-DD."},
+    "12_SUBCONTRACTOR": {"role": "work", "note": "Hợp đồng, thanh toán, đánh giá thầu phụ."},
+    "13_CLOSEOUT-HANDOVER": {"role": "work", "note": "Hồ sơ hoàn công, O&M manual, bảo hành, biên bản bàn giao, đào tạo vận hành."},
+    "14_PAYMENT": {"role": "work", "note": "Hồ sơ thanh toán tiến độ, hoá đơn, giữ lại (retention)."},
+    "90_CLAUDE-OUTPUT": {"role": "claude", "note": "Nơi Claude làm việc.", "children": {
+      "_INBOX": {"role": "claude", "note": "Bản nháp CHỜ REVIEW. Review → sửa tay → save cùng tên → chuyển sang folder nghiệp vụ. KHÔNG gởi file trong _INBOX ra ngoài."},
+      "_ARCHIVE": {"role": "claude", "note": "Bản trước khi sửa, theo YYYY-MM. Dùng để khôi phục hoặc Word → Review → Compare."},
+      "_SCRATCH": {"role": "claude", "note": "Script, log, file tạm. Xoá được bất cứ lúc nào."}}}
+  }
+}
